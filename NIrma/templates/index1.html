@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Kitchen Inventory</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='App.css') }}">
+</head>
+<body>
+  <div class="App">
+    <header class="App-header">
+      <h1>Smart Kitchen Inventory</h1>
+
+      <div class="inventory-container">
+        <h2>Inventory</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody id="inventory-table-body">
+            <!-- Inventory items will be inserted here -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="recipe-container">
+        <h2>Recipe Suggestion</h2>
+        <p id="recipe-suggestion">
+          <!-- Recipe suggestion will be inserted here -->
+        </p>
+      </div>
+    </header>
+  </div>
+
+  <a href="/another_page.html" class="redirect-link">Go to Manage Food</a>
+  <a href="/waste_monitoring.html" class="redirect-link">Go to Waste Monitoring</a>
+
+  <script>
+    // Function to fetch inventory data and update the table
+    async function fetchInventory() {
+      try {
+        const response = await fetch('/inventory');
+        const data = await response.json();
+        const inventoryTableBody = document.getElementById('inventory-table-body');
+
+        // Clear existing table rows
+        inventoryTableBody.innerHTML = '';
+
+        // Insert new rows
+        data.forEach(item => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${item[0]}</td>
+            <td>${item[1]} units</td>
+          `;
+          inventoryTableBody.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Error fetching inventory:', error);
+      }
+    }
+
+    // Function to fetch recipe suggestion and update the display
+    async function fetchRecipe() {
+      try {
+        const response = await fetch('/recipe');
+        const data = await response.json();
+        const recipeSuggestion = document.getElementById('recipe-suggestion');
+        recipeSuggestion.textContent = data.recipe || 'No recipe suggestion available.';
+      } catch (error) {
+        console.error('Error fetching recipe:', error);
+      }
+    }
+
+    // Fetch inventory and recipe on page load
+    window.onload = () => {
+      fetchInventory();
+      fetchRecipe();
+    };
+  </script>
+</body>
+</html>

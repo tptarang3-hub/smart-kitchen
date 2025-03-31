@@ -1,0 +1,72 @@
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  color: #444; /* Added text color for the app */
+}
+
+.App-header {
+  background-color: rgb(201, 207, 202);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  color: #333; /* Added text color for the header */
+}
+
+h1 {
+  color: #333;
+}
+
+.inventory-container, .recipe-container {
+  margin: 20px auto;
+  padding: 15px;
+  background: rgba(199, 239, 199, 0.999);
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  color: #4b2d2d; /* Added text color for containers */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Added background color for even rows */
+}
+
+tr:hover {
+  background-color: #f1f1f1; /* Added hover effect for table rows */
+}
+
+p {
+  font-size: 18px;
+  color: #555;
+}
+
+.redirect-link {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.redirect-link:hover {
+  background-color: #0056b3; /* Added hover effect for the link */
+}

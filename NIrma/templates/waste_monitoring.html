@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Waste Monitoring</h1>
+        <p>Analyze food waste and generate reports to optimize efficiency.</p>
+    </header>
+    <div class="container">
+        <section class="feature">
+            <h2>Waste Tracking</h2>
+            <p>Log and analyze discarded food items using AI.</p>
+            <button onclick="trackWaste()">Track Waste</button>
+        </section>
+        <section class="feature">
+            <h2>Waste Reports</h2>
+            <p>View waste reports and take action to minimize losses.</p>
+            <button onclick="viewReports()">View Reports</button>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2025 Smart Kitchen AI | <a href="/contact.html" style="color: #fff;">Contact Us</a></p>
+    </footer>
+
+    <a href="/index1.html" class="redirect-link">Go to AI Menu Generator</a>
+    <a href="/another_page.html" class="redirect-link">Go to Manage Food</a>
+
+    <script>
+        function trackWaste() {
+            alert("Tracking waste...");
+        }
+
+        function viewReports() {
+            alert("Fetching waste reports...");
+        }
+    </script>
+</body>
+</html>

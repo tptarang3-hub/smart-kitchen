@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Analysis</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        /* Header styling */
+        header {
+            background: url('banner.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 50px 20px;
+        }
+
+        /* Main content container styling */
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* Feature sections styling */
+        .feature {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Canvas styling */
+        canvas {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Footer styling */
+        footer {
+            background: #333;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Waste Analysis</h1>
+        <p>Visualize and analyze your waste data.</p>
+    </header>
+    <div class="container">
+        <div class="feature">
+            <h2>Waste Composition</h2>
+            <canvas id="wasteCompositionChart"></canvas>
+        </div>
+        <div class="feature">
+            <h2>Waste Over Time</h2>
+            <canvas id="wasteOverTimeChart"></canvas>
+        </div>
+        <div class="feature">
+            <h2>Waste Quantity Distribution</h2>
+            <canvas id="wasteQuantityDistributionChart"></canvas>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 Smart Kitchen AI | <a href="/contact.html" style="color: #fff;">Contact Us</a></p>
+    </footer>
+
+    <script>
+        // Example data for charts
+        const wasteCompositionData = {
+            labels: ['Food', 'Plastic', 'Paper', 'Glass'],
+            datasets: [{
+                label: 'Waste Type',
+                data: [300, 50, 100, 150],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const wasteOverTimeData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'Waste Quantity',
+                data: [65, 59, 80, 81, 56, 55, 40],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        };
+
+        const wasteQuantityDistributionData = {
+            labels: ['0-50', '51-100', '101-150', '151-200', '201-250', '251-300', '301-350'],
+            datasets: [{
+                label: 'Quantity Range',
+                data: [20, 40, 30, 25, 35, 15, 10],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Initialize charts
+        const wasteCompositionCtx = document.getElementById('wasteCompositionChart').getContext('2d');
+        const wasteOverTimeCtx = document.getElementById('wasteOverTimeChart').getContext('2d');
+        const wasteQuantityDistributionCtx = document.getElementById('wasteQuantityDistributionChart').getContext('2d');
+
+        new Chart(wasteCompositionCtx, {
+            type: 'pie',
+            data: wasteCompositionData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Waste Composition'
+                    }
+                }
+            },
+        });
+
+        new Chart(wasteOverTimeCtx, {
+            type: 'line',
+            data: wasteOverTimeData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Waste Over Time'
+                    }
+                }
+            },
+        });
+
+        new Chart(wasteQuantityDistributionCtx, {
+            type: 'bar',
+            data: wasteQuantityDistributionData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Waste Quantity Distribution'
+                    }
+                }
+            },
+        });
+    </script>
+</body>
+</html>
