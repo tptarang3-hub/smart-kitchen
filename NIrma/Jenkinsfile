@@ -3,20 +3,12 @@ pipeline {
 
     stages {
 
-        stage('Install pip') {
+        stage('Setup Python Environment') {
             steps {
                 sh '''
-                curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-                python3 get-pip.py
-                '''
-            }
-        }
-
-        stage('Install Python Dependencies') {
-            steps {
-                sh '''
-                python3 --version
-                pip3 install flask
+                python3 -m venv venv
+                . venv/bin/activate
+                pip install flask
                 '''
             }
         }
@@ -24,7 +16,8 @@ pipeline {
         stage('Run Application') {
             steps {
                 sh '''
-                nohup python3 NIrma/app.py &
+                . venv/bin/activate
+                nohup python NIrma/app.py &
                 '''
             }
         }
