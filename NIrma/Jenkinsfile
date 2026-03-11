@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/tptarang3-hub/smart-kitchen.git'
+            }
+        }
+
+        stage('Install Python Dependencies') {
+            steps {
+                sh '''
+                python3 --version
+                pip3 install flask
+                '''
+            }
+        }
+
+        stage('Run Application') {
+            steps {
+                sh '''
+                python3 NIrma/app.py &
+                '''
+            }
+        }
+
+    }
+}
